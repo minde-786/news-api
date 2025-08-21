@@ -8,7 +8,9 @@ function News() {
  
   const[item,setData]=useState<NewsItem[]>([])
   const[search,setSearch]=useState("pakistan")
-  const API_KEY=  process.env.NEXT_PUBLIC_NEWS_API_KEY;
+  const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
+  console.log("API KEY ===>", API_KEY);
+
 
   const searchHundler=(event: { target: { value: React.SetStateAction<string>; }; })=>{
     console.log(event.target.value);
