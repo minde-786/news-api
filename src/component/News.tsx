@@ -18,7 +18,9 @@ function News() {
     try {
       if (!API_KEY) throw new Error("API key is missing")
       const res = await fetch(
-        `https://newsapi.org/v2/everything?q=${search}&apiKey=${API_KEY}`
+        `https://newsapi.org/v2/everything?q=${encodeURIComponent(
+          search
+        )}&pageSize=100&page=1&apiKey=${API_KEY}`
       )
       if (!res.ok) throw new Error(`API error: ${res.status}`)
       const jsonData = await res.json()
