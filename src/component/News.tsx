@@ -7,7 +7,7 @@ import Link from "next/link"
 
 function News() {
   const [item, setData] = useState<NewsItem[]>([])
-  const [search, setSearch] = useState("pakistan")
+  const [search, setSearch] = useState("")
   const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY
 
   const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,9 +18,8 @@ function News() {
     try {
       if (!API_KEY) throw new Error("API key is missing")
       const res = await fetch(
-        `https://newsapi.org/v2/everything?q=${encodeURIComponent(
-          search
-        )}&pageSize=100&page=1&apiKey=${API_KEY}`
+        `https://newsapi.org/v2/top-headlines?q=${search}&pageSize=100&apiKey=${API_KEY}`
+
       )
       if (!res.ok) throw new Error(`API error: ${res.status}`)
       const jsonData = await res.json()
