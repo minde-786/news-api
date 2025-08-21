@@ -10,6 +10,7 @@ function News() {
   const[search,setSearch]=useState("pakistan")
   const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
   console.log("API KEY ===>", API_KEY);
+  console.log(process.env.NEXT_PUBLIC_NEWS_API_KEY)
 
 
   const searchHundler=(event: { target: { value: React.SetStateAction<string>; }; })=>{
@@ -20,8 +21,10 @@ function News() {
     getData()
   },[])
   const getData= async ()=>{
-  const res=await fetch(`https://newsapi.org/v2/everything?q=${search}&apiKey=${API_KEY}`)
+  const res=await fetch(`https://newsapi.org/v2/top-headlines?q=${search}&apiKey=${API_KEY}`)
   const jsonData=await res.json();
+  
+
   console.log(jsonData.articles)
   setData(jsonData.articles)
 
